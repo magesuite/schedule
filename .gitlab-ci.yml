@@ -1,0 +1,7 @@
+stages:
+  - codesniffer
+
+include:
+  - project: 'magesuite/gitlab-ci-config'
+    ref: 'master'
+    file: 'magesuite-module.yml'

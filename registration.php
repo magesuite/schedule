@@ -4,4 +4,3 @@
     'MageSuite_Schedule',
     __DIR__
 );
-

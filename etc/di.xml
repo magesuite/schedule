@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="MageSuite\Schedule\Api\SchedulerRepositoryInterface" type="MageSuite\Schedule\Model\SchedulerRepository"/>
+
+    <type name="MageSuite\Schedule\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+
+    <type name="MageSuite\Schedule\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">schedulerLogger</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">MageSuite\Schedule\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="MageSuite\Schedule\Model\SchedulerJobsCollector">
+        <arguments>
+            <argument name="jobsGroups" xsi:type="array">
+                <item name="general" xsi:type="array">
+                    <item name="class" xsi:type="object">MageSuite\Schedule\Model\Schedule\Jobs</item>
+                    <item name="processor" xsi:type="object">MageSuite\Schedule\Service\Scheduler\Processor</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Cron\Model\Config">
+        <plugin name="add_scheduler_jobs" type="MageSuite\Schedule\Plugin\Cron\Model\Config\AddSchedulerJobs" sortOrder="10" />
+    </type>
+</config>

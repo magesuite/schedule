@@ -1,11 +1,11 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:MageSuite_Changelog:etc/changelog.xsd">
-    <module id="MageSuite_ErpConnector" name="MageSuite_ErpConnector">
+    <module id="MageSuite_Schedule" name="MageSuite_Schedule">
         <changelog>
-            <tag version="1.0.0" date="2022-05-29">
+            <tag version="1.0.0" date="2022-08-08">
                 <entry>
                     <type>INIT</type>
                     <overview>Initial release</overview>
-                    <description></description>
+                    <description>Extracted scheduler logic to separate module</description>
                 </entry>
             </tag>
         </changelog>

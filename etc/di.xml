@@ -22,7 +22,7 @@
         <arguments>
             <argument name="jobsGroups" xsi:type="array">
                 <item name="general" xsi:type="array">
-                    <item name="class" xsi:type="object">MageSuite\Schedule\Model\Schedule\Jobs</item>
+                    <item name="cronjob" xsi:type="object">MageSuite\Schedule\Model\Schedule\Jobs</item>
                     <item name="processor" xsi:type="object">MageSuite\Schedule\Service\Scheduler\Processor</item>
                 </item>
             </argument>

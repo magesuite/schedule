@@ -32,11 +32,11 @@ class SchedulerJobsCollector
         $jobs = [];
 
         foreach ($this->jobsGroups as $groupName => $jobsGroup) {
-            if (!$jobsGroup['class'] instanceof \MageSuite\Schedule\Model\Schedule\JobsGroupInterface) {
+            if (!$jobsGroup['cronjob'] instanceof \MageSuite\Schedule\Model\Schedule\JobsGroupInterface) {
                 continue;
             }
 
-            $jobs[$groupName] = $jobsGroup['class']->execute();
+            $jobs[$groupName] = $jobsGroup['cronjob']->execute();
         }
 
         return $jobs;

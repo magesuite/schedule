@@ -3,8 +3,6 @@ namespace MageSuite\Schedule\Cron;
 
 class Process
 {
-    const LOCK_NAME = 'magesuite_scheduler';
-
     protected $handlerClass = \MageSuite\Schedule\Model\Queue\SchedulerHandler::class;
 
     protected \MageSuite\Schedule\Helper\Configuration $configuration;
@@ -13,18 +11,14 @@ class Process
 
     protected \MageSuite\Schedule\Model\SchedulerJobsCollector $schedulerJobsCollector;
 
-    protected \Magento\Framework\Lock\Backend\Database $databaseLocker;
-
     public function __construct(
         \MageSuite\Schedule\Helper\Configuration $configuration,
         \MageSuite\Queue\Service\Publisher $queuePublisher,
-        \MageSuite\Schedule\Model\SchedulerJobsCollector $schedulerJobsCollector,
-        \Magento\Framework\Lock\Backend\Database $databaseLocker
+        \MageSuite\Schedule\Model\SchedulerJobsCollector $schedulerJobsCollector
     ) {
         $this->configuration = $configuration;
         $this->queuePublisher = $queuePublisher;
         $this->schedulerJobsCollector = $schedulerJobsCollector;
-        $this->databaseLocker = $databaseLocker;
     }
 
     /**
@@ -40,13 +34,9 @@ class Process
             return;
         }
 
-        $this->waitUntilUnlocked();
-
         if (preg_match('/scheduler_([a-zA-Z0-9]*)_([0-9+])/', $name)) {
             $this->process($name);
         }
-
-        $this->databaseLocker->unlock(self::LOCK_NAME);
     }
 
     protected function process($name)
@@ -79,14 +69,5 @@ class Process
 
     public function execute() //phpcs:ignore
     {
-    }
-
-    protected function waitUntilUnlocked()
-    {
-        while ($this->databaseLocker->isLocked(self::LOCK_NAME)) {
-            sleep(1); //phpcs:ignore
-        }
-
-        $this->databaseLocker->lock(self::LOCK_NAME);
     }
 }

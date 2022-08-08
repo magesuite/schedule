@@ -7,20 +7,11 @@ namespace MageSuite\Schedule\Test\Integration\Plugin\Cron\Model\Config;
  */
 class AddSchedulerJobsTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @var \Magento\TestFramework\ObjectManager
-     */
-    protected $objectManager;
+    protected ?\Magento\TestFramework\ObjectManager $objectManager;
 
-    /**
-     * @var \Magento\Cron\Model\Config
-     */
-    protected $cronConfig;
+    protected ?\Magento\Cron\Model\Config $cronConfig;
 
-    /**
-     * @var \MageSuite\Schedule\Model\Schedule\Jobs
-     */
-    protected $scheduleJobs;
+    protected ?\MageSuite\Schedule\Model\Schedule\Jobs $scheduleJobs;
 
     protected function setUp(): void
     {

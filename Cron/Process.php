@@ -69,5 +69,6 @@ class Process
 
     public function execute() //phpcs:ignore
     {
+        // Method is required but should never be executed
     }
 }
